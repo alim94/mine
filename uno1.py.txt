@@ -1,0 +1,37 @@
+bruteForce(originalset[], n)
+Totalsubsets <-- 2^n
+sumOfOriginalSet <-- 0
+for i <--0 to n
+sumOfOriginalSet + = originalset[i] //base case
+if(sumOfOriginalSet % 2 = 0)
+half = sumOfOriginalSet/2
+else //The problem cannot be split into 2 equal partitions because we are dealing with whole numbers So we exit
+return 0 //iterates through all binary combinations by swapping the 1’s with
+//corresponding element in the set
+for i <-- 0 to Totalsubsets/2
+subSetSum <--0
+remainder <-- i
+N <--0
+while N<n
+if remainder % 2 = 1
+subSetSum + = originalset[N]
+remainder = remainder/2
+N++ // if sum of a subset is equal to sum of the original set/2
+// find its complement and perform XOR
+if subSetSum = half
+compliment <-- Totalsubsets-i-1
+subSetSum <--0
+remainder <-- i
+N <--0
+bool found <-- true;
+while N<n
+if(remainder%2 ^ compliment%2)
+remainder = remainder/2
+compliment=compliment/2
+N++
+else
+found <-- false
+break;
+if found = true
+return 1
+return 0;
